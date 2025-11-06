@@ -753,3 +753,178 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* حركات وإيموشنات للموبايل فقط */
+@media (max-width: 768px) {
+    
+    /* تأثير اهتزاز بسيط عند التحميل */
+    @keyframes mobileShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+    
+    /* تأثير ظهور العناصر مع انزلاق */
+    @keyframes mobileSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    /* تأثير النقر على الأزرار */
+    @keyframes mobileTap {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+    }
+    
+    /* تأثير الطفو للبطاقات */
+    @keyframes mobileFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    
+    /* تطبيق الحركات على العناصر */
+    
+    /* الهيدر - اهتزاز خفيف */
+    .header {
+        animation: mobileShake 0.5s ease-in-out;
+    }
+    
+    /* الهيرو - ظهور متدرج */
+    .hero-content {
+        animation: mobileSlideIn 0.8s ease-out;
+    }
+    
+    /* البطاقات - طفو مستمر */
+    .service-card, .portfolio-item {
+        animation: mobileFloat 3s ease-in-out infinite;
+    }
+    
+    /* تأخير متدرج للبطاقات */
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+    
+    /* تأثير النقر على الأزرار */
+    .cta-button, .whatsapp-btn, .email-btn {
+        transition: all 0.2s ease;
+    }
+    
+    .cta-button:active, .whatsapp-btn:active, .email-btn:active {
+        animation: mobileTap 0.2s ease;
+        background: linear-gradient(135deg, #d35400 0%, #e67e22 100%) !important;
+    }
+    
+    /* تأثير السحب للأسفل لتحديث الصفحة */
+    @keyframes pullToRefresh {
+        0% { transform: translateY(-50px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* تحسين التمرير على الموبايل */
+    .services-grid, .portfolio-grid {
+        animation: pullToRefresh 0.6s ease-out;
+    }
+    
+    /* تأثير اهتزاز الشعار عند اللمس */
+    .logo img, .logo h2 {
+        transition: transform 0.3s ease;
+    }
+    
+    .logo:active img, .logo:active h2 {
+        transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* تأثير النقر على قائمة التنقل */
+    .nav-links a {
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a:active {
+        color: #e67e22;
+        transform: scale(1.1);
+    }
+    
+    .nav-links a:active::after {
+        content: '•';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #e67e22;
+        font-size: 1.2rem;
+    }
+    
+    /* تأثير اللمس على البطاقات */
+    .service-card:active, .portfolio-item:active {
+        transform: scale(0.98) !important;
+        box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3) !important;
+    }
+    
+    /* إيموشن عند التمرير للأسفل */
+    .scroll-indicator {
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+    
+    /* تأثير الاهتزاز عند الوصول لقسم */
+    .services:target,
+    .portfolio:target,
+    .contact:target {
+        animation: mobileShake 0.5s ease-in-out;
+    }
+    
+    /* تحسين مظهر الأيقونات على الموبايل */
+    .contact-icon {
+        animation: mobileFloat 2s ease-in-out infinite;
+    }
+    
+    /* تأثير النقر على الضمانات */
+    .guarantee-item:active {
+        background: #e67e22 !important;
+        color: white !important;
+        transform: scale(0.98);
+    }
+    
+    /* إيموشن loading للصور */
+    .service-image {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .service-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: loadingShine 1.5s infinite;
+    }
+    
+    @keyframes loadingShine {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
+    /* إخفاء الـ loading بعد تحميل الصور */
+    .service-image.loaded::before {
+        display: none;
+    }
+}
