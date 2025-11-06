@@ -1,6 +1,6 @@
 // وظيفة فتح واتساب
 function openWhatsApp() {
-    const phoneNumber = "01003041351";
+    const phoneNumber = "+201003041351";
     const message = "السلام عليكم! عاوز استفسر عن الخدمات اللي بتقدمها";
     const whatsappURL = `https://wa.me/${+201003041351}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
