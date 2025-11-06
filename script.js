@@ -1,9 +1,6 @@
 // وظيفة فتح واتساب
 function openWhatsApp() {
-    const phoneNumber = "+201003041351";
-    const message = "السلام عليكم! عاوز استفسر عن الخدمات اللي بتقدمها";
-    const whatsappURL = `https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${encodeURIComponent(message)}&app_absent=0`;
-    window.open(whatsappURL, '_blank');
+    window.open("https://wa.me/+201003041351", '_blank');
 }
 
 // تفعيل زر الاتصال - مع التأكد من وجود العنصر
