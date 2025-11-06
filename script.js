@@ -2,7 +2,7 @@
 function openWhatsApp() {
     const phoneNumber = "+201003041351";
     const message = "السلام عليكم! عاوز استفسر عن الخدمات اللي بتقدمها";
-    const whatsappURL = `https://wa.me/${+201003041351}?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/+201003041351}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
 }
 
