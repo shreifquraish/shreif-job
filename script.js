@@ -6,82 +6,72 @@ function openWhatsApp() {
     window.open(whatsappURL, '_blank');
 }
 
-// تأثيرات التمرير المتقدمة
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('.header');
-    const scrolled = window.scrollY > 100;
-    
-    if (scrolled) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-    
-    // تأثيرات ظهور العناصر
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-            element.classList.add('active');
-        }
+// تفعيل زر الاتصال - مع التأكد من وجود العنصر
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+        openWhatsApp();
     });
-});
-
-// تفعيل زر الاتصال
-document.querySelector('.cta-button').addEventListener('click', function() {
-    openWhatsApp();
-});
+}
 
 // تفعيل الروابط في القائمة
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
-// تأثيرات إضافية عند التحميل
-window.addEventListener('load', function() {
-    // إضافة كلاس reveal للعناصر
-    document.querySelectorAll('.service-card, .portfolio-item, .contact-item').forEach(el => {
-        el.classList.add('reveal');
+// إضافة تأثير عند التمرير
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(26, 26, 26, 0.95)';
+        } else {
+            header.style.background = '#1a1a1a';
+        }
+    }
+});
+
+// تأثيرات دخول العناصر
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
     });
+}, observerOptions);
+
+// مراقبة جميع العناصر
+document.querySelectorAll('.service-card, .portfolio-item, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(50px)';
+    el.style.transition = 'all 0.8s ease';
+    observer.observe(el);
+});
+
+// رسالة تأكيد عند تحميل الصفحة
+window.addEventListener('load', function() {
+    console.log('موقع شريف قريش جاهز للعمل! 🚀');
     
-    // تفعيل تأثيرات التمرير فور التحميل
-    window.dispatchEvent(new Event('scroll'));
-    
-    // تأثير تحميل الصفحة
+    // تأثير تحميل بسيط
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.8s ease';
+    document.body.style.transition = 'opacity 0.5s ease';
     
     setTimeout(() => {
         document.body.style.opacity = '1';
-    }, 200);
-});
-
-// تأثيرات الـ Hover المتقدمة
-document.querySelectorAll('.service-card, .portfolio-item, .contact-item').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = this.style.transform + ' rotate(1deg)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = this.style.transform.replace(' rotate(1deg)', '');
-    });
-});
-
-// تأثيرات الإيموشن عند النقر
-document.querySelectorAll('button').forEach(button => {
-    button.addEventListener('click', function() {
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.style.transform = '';
-        }, 150);
-    });
+    }, 100);
 });
