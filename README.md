@@ -17,8 +17,9 @@
 - GitHub Pages
 
 ## 🌐 رابط الموقع
-[https://shreifquraish.github.io/shreif-jobs/](https://shreifquraish.github.io/shreif-jobs/)
+https://shreifquraish.github.io/shreif-job
 
 ## 📞 للتواصل
 - واتساب: 01003041351
+
 - إيميل: shreifqurish@gmail.com
